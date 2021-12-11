@@ -8,33 +8,28 @@ function App() {
        * and will act as a booklist
        */}
       <Book />
-      <Book />
-      <Book />
-      <Book />
-      <Book />
-      <Book />
-      <Book />
-      <Book />
+
     </section>
   );
 }
 
 const Book = () => {
-  return <article>
-    {/**Here we nested 3 different components */}
-    <Image />
-    <Title />
-    <Author/>
+  /**here i create variables to facilate quickly changes in my code */
+  const title = 'The Mastery of Life: A Toltec Guide to Personal Freedom'
+  const author = 'don Miguel Ruiz Jr'
+  return (
+    <article className='book'>
+    {/**Here i made jsx more dynamic adding variables that i can change
+     * or use methods on them like the case of toUpperCase
+     */}
+    <img 
+        src="https://m.media-amazon.com/images/I/51-Jv++qMdL._SY300_.jpg" 
+        alt="" />
+    <h1>{title}</h1>
+    <h4>{author.toUpperCase()}</h4>
+    <p>{6 + 6}</p>
   </article>
+  );
 }
-
-const Image = () => {
-  return <img 
-  src="https://m.media-amazon.com/images/I/51-Jv++qMdL._SY300_.jpg" alt="" />
-}
-
-const Title = () => <h2>The Mastery of Life: A Toltec Guide to Personal Freedom</h2>
-
-const Author = () => <h3>don Miguel Ruiz Jr</h3>
 
 export default App;
