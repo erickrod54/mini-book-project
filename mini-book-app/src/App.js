@@ -1,7 +1,8 @@
+import React from 'react';
 import './App.css';
 
-/**This App js file is the second props version of the minibook app, and 
- * will allow to use the same component Book with different book data
+/**This App js file is the third props version of the minibook app, and 
+ * will cover lines related with how i destructured props
  */
 
 /**here i will create two different books 'firstBook' and 'secondBook' */
@@ -19,7 +20,7 @@ const secondBook = {
 
 function App() {
   return (
-    <section className='booklist'>
+    <section className='bookList'>
       {/**this attributes in the Book component represent props*/}
 
       {/**Using the generic Book component i render
@@ -43,16 +44,22 @@ function App() {
  * and this way they're being passed to be accesed and render directly in
  * the respective component making our component unique
  */
-const Book = (props) => {
-  console.log(props)
+
+
+/**this is the second way to destructure props, directly passing props
+ * throught the component*/
+const Book = ({img, title, author }) => {
+  /**this is the first way in how i can destructure props */
+  //const {img, title, author } = props
+  console.log({img, title, author })
   return (
     <article className='book'>
     {/**Here i access the props using 'props.img', 'props.title', 'props.author' */}
     <img 
-        src={props.img}
+        src={img}
         alt="" />
-    <h1>{props.title}</h1>
-    <h4>{props.author}</h4>
+    <h1>{title}</h1>
+    <h4>{author}</h4>
   </article>
   );
 }
