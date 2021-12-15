@@ -1,76 +1,51 @@
 import React from 'react';
 import './App.css';
 
-/**This App js file is the fifth props version of the minibook app, and 
- * will cover lines related with children props, this second version
- * besides access props children, this approach show them as part of 
- * the component in the java console
+/**This App js version will focus in refactor the data, and how i map over an object
+ * and its difference mapping over a list
  */
 
-/**here i will create two different books 'firstBook' and 'secondBook' */
-const firstBook = {
-  img : 'https://m.media-amazon.com/images/I/51-Jv++qMdL._SY300_.jpg ',
-  title: 'The Mastery of Life: A Toltec Guide to Personal Freedom',
-  author: 'don Miguel Ruiz Jr'
-}
+/**here i will create an array of books, with two books, and i can easily keep
+ * adding more books
+ */
+const books = [
+  {
+    img : 'https://m.media-amazon.com/images/I/51-Jv++qMdL._SY300_.jpg ',
+    title: 'The Mastery of Life: A Toltec Guide to Personal Freedom',
+    author: 'don Miguel Ruiz Jr'
+  },
+  {
+    img : 'https://images-na.ssl-images-amazon.com/images/I/51NsRhI4llL._SX348_BO1,204,203,200_.jpg ',
+    title: 'The Four Agreements Companion Book: Using the Four Agreements to Master the Dream of Your Life (Toltec Wisdom)',
+    author: ' don Miguel Ruiz (Author), Janet Mills'
+  }  
+]
 
-const secondBook = {
-  img : 'https://images-na.ssl-images-amazon.com/images/I/51NsRhI4llL._SX348_BO1,204,203,200_.jpg ',
-  title: 'The Four Agreements Companion Book: Using the Four Agreements to Master the Dream of Your Life (Toltec Wisdom)',
-  author: ' don Miguel Ruiz (Author), Janet Mills'
-}
 
+/**this approach is valid for arrays of simple data- names array example-, not objects, 
+ * this will be as example then i'll do it with the object
+ */
+const names = ['Janelle','Laurie','Essie','Ramon','Peter']
+
+/**then i can map over names, using a newNames const, and inside i can wrap it
+ * in a jsx element, for this case an h1
+ */
+const newNames = names.map((name)=>{
+  return <h1>{name}</h1>
+});
+console.log(newNames);
 function App() {
   return (
-    <section className='bookList'>
-      {/**this attributes in the Book component represent props*/}
-
-      {/**Using the generic Book component i render
-       * using 'img','title','author' props for each 
-       * different book
-       */}
-      <Book 
-          img={firstBook.img}
-          title={firstBook.title}
-          author={firstBook.author}
-          >
-      {/**here between an opening and closing tag of Book component i place
-       * a 'firstBook' children notice that children *can be buttons, forms, or whole 
-       * apps*
-       */}
-       <p>-firstBook children- Lorem ipsum dolor sit amet,
-          consectetur adipiscing elit, 
-         sed do eiusmod tempor incididunt ut labore et dolore 
-         magna aliqua.</p>
-      </Book>
-      <Book img={secondBook.img}
-            title={secondBook.title}
-            author={secondBook.author}
-            >
-      {/**here between an opening and closing tag of Book component i place
-       * a secondBook children
-       */}
-       <p>-secondBook children- Lorem ipsum dolor sit amet,
-          consectetur adipiscing elit, 
-         sed do eiusmod tempor incididunt ut labore et dolore 
-         magna aliqua.</p>
-        </Book>
-    </section>
+    /**then i render i'll get nicely render */
+    <section className='bookList'>{newNames}</section>
   );
 }
 
-/**the arguments here for the book component are the props from above
- * and this way they're being passed to be accesed and render directly in
- * the respective component making our component unique
- */
-
-
-/**children are on props object so i access them as a props */
 const Book = (props) => {
   /**this is the first way in how i can destructure props, and children get 
    * prompted in java console within the component
   */
-  const {img, title, author, children } = props;
+  const {img, title, author } = props;
   console.log(props);
   return (
     <article className='book'>
@@ -80,10 +55,7 @@ const Book = (props) => {
         alt="" />
     <h1>{title}</h1>
     <h4>{author}</h4>
-    {/**i can place children wherever i need it to render, for example here
-     * think about it as a description
-     */}
-     {children}
+
   </article>
   );
 }
