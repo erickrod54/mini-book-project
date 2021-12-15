@@ -1,11 +1,10 @@
 import React from 'react';
 import './App.css';
 
-/**This App js file is the fourth props version of the minibook app, and 
- * will cover lines related with children props, this first version of children
- * props i can access them but i can't whatch them in the JavaConsole, to do 
- * so i have to access them destructuring the props as a const, i'll do it
- * in fifth App js props version
+/**This App js file is the fifth props version of the minibook app, and 
+ * will cover lines related with children props, this second version
+ * besides access props children, this approach show them as part of 
+ * the component in the java console
  */
 
 /**here i will create two different books 'firstBook' and 'secondBook' */
@@ -67,10 +66,12 @@ function App() {
 
 
 /**children are on props object so i access them as a props */
-const Book = ({img, title, author, children }) => {
-  /**this is the first way in how i can destructure props */
-  //const {img, title, author } = props
-  console.log({img, title, author })
+const Book = (props) => {
+  /**this is the first way in how i can destructure props, and children get 
+   * prompted in java console within the component
+  */
+  const {img, title, author, children } = props;
+  console.log(props);
   return (
     <article className='book'>
     {/**Here i access the props using 'props.img', 'props.title', 'props.author' */}
