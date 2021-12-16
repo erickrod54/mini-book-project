@@ -1,12 +1,15 @@
 import React from 'react';
 import './App.css';
 
-/**This App js version will focus in refactor the data, and how i map over an object
- * and its difference mapping over a list
- */
+/**This App js version 1 (one) will focus in refactor the data, and how i map over 
+ * an JSON object for hte case of the books object */
 
 /**here i will create an array of books, with two books, and i can easily keep
- * adding more books
+ * adding more books, this version 1 (one) of refactor data, has a warning
+ * 
+ *  'index.js:1 Warning: Each child in a list should have a unique "key" prop.'
+ * 
+ * this will be fixed in the version 2 (two) of refactor the data
  */
 const books = [
   {
@@ -18,34 +21,35 @@ const books = [
     img : 'https://images-na.ssl-images-amazon.com/images/I/51NsRhI4llL._SX348_BO1,204,203,200_.jpg ',
     title: 'The Four Agreements Companion Book: Using the Four Agreements to Master the Dream of Your Life (Toltec Wisdom)',
     author: ' don Miguel Ruiz (Author), Janet Mills'
+  },
+  {
+    img : 'https://m.media-amazon.com/images/I/41lAPQqRZOL.jpg',
+    title: 'Eros',
+    author: ' Barbara Emrys (Author), Miguel Ruiz (Author)'
   }  
 ]
 
-
-/**this approach is valid for arrays of simple data- names array example-, not objects, 
- * this will be as example then i'll do it with the object
- */
-const names = ['Janelle','Laurie','Essie','Ramon','Peter']
-
-/**then i can map over names, using a newNames const, and inside i can wrap it
- * in a jsx element, for this case an h1
- */
-const newNames = names.map((name)=>{
-  return <h1>{name}</h1>
-});
-console.log(newNames);
 function App() {
   return (
-    /**then i render i'll get nicely render */
-    <section className='bookList'>{newNames}</section>
+    /**first i map the 'books' JSON object where my books data live,
+     * and get them throught a prop calle 'book'
+     */
+    <section className='bookList'>{books.map((book) => {
+      return (
+        /** this way i send the 'books' data as a props and a get them in the
+         * 'Book' component */
+        <Book book={book}></Book>
+      );
+    })}
+    </section>
   );
 }
 
 const Book = (props) => {
-  /**this is the first way in how i can destructure props, and children get 
-   * prompted in java console within the component
-  */
-  const {img, title, author } = props;
+  /**i set the props with the prop that i'm looking for this case 'book' and 
+   * will be set as 'props.book'
+   */
+  const {img, title, author } = props.book;
   console.log(props);
   return (
     <article className='book'>
